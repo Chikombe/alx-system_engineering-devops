@@ -1,1 +1,1 @@
-display current directory contents with used and group IDs displayed numerically
+display directory current contents with user and group IDs displayed numerically
