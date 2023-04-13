@@ -1,1 +1,1 @@
-We are symbols, and inhabit symbols
+copy html
