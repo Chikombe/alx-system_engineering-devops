@@ -1,1 +1,1 @@
-script that creates multiple directories in the current directory
+create a magic file
