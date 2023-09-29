@@ -2,8 +2,14 @@
 #Displays the PID, along with the process name, that contains the word bash.
 #There is a "sleep 2" in between each iteration
 
-while true
-do
- echo "To infinity and beyond"
- sleep 2
+while true; do
+	pids=$(pgrep -f bash)
+
+	for pid in $pids; do
+	process_name=$(cat /proc/"$pid"/comm >2/dev/null)
+	if [ -n "$process_name" ]; then
+	       echo "PID: $pid, Process Name: $process_name"
+	fi
+done
+	sleep 2
 done
