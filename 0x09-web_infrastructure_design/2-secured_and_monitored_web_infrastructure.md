@@ -1,6 +1,6 @@
  Secured and monitored web infrastructure
 
-
+https://photos.google.com/photo/AF1QipMPApdYO8enKjdu9wSFI8qpA_rk4I_jyQWI3DiF
 
 
 Description
