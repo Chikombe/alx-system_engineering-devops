@@ -44,9 +44,14 @@ frontend estherchikombe.tech
 
 backend estherchikombe.tech_backend
         balance roundrobin
-	http-request set-header X-Served_By %[hdr(host)]
-        server 403773-web-01 54.172.58.162:80 check send-proxy
-        server 403773-web-02 54.209.223.92:80 check send-proxy
+
+        acl is_web_01 hdr(host) -i 54.172.58.162
+        acl is_web_02 hdr(host) -i 54.209.223.92
+
+        http-request set-header X-Served_By 403773-web-01 if is_web_01
+        http-request set-header X-Served_By 403773-web-02 if is_web_02
+        server 403773-web-01 54.172.58.162:80 check 
+        server 403773-web-02 54.209.223.92:80 check 
 
 EOF
 
