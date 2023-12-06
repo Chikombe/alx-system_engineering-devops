@@ -38,14 +38,15 @@ defaults
     errorfile 503 /etc/haproxy/errors/503.http
     errorfile 504 /etc/haproxy/errors/504.http
 
-frontend http_front
+frontend estherchikombe.tech
         bind 0.0.0.0:8080
-        default_backend http_back
+        default_backend estherchikombe.tech_backend
 
-backend http_back
+backend estherchikombe.tech_backend
         balance roundrobin
-        server 403773-web-01 54.172.58.162:80 check
-        server 403773-web-02 54.209.223.92:80 check
+	http-request set-header X-Served_By %[hdr(host)]
+        server 403773-web-01 54.172.58.162:80 check send-proxy
+        server 403773-web-02 54.209.223.92:80 check send-proxy
 
 EOF
 
