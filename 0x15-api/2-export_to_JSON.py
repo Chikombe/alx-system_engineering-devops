@@ -2,17 +2,33 @@
 
 import json
 import requests as r
-import sys
 
 if __name__ == '__main__':
-    user_id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
-    usr = r.get(url + "users/{}".format(user_id)).json()
-    username = usr.get("username")
-    to_do = r.get(url + "todos", params={"user_id": user_id}).json()
 
-    with open("{}.json".format(user_id), "w") as jsonfile:
-        json.dump({user_id: [{"task": e.get("title"),
-                              "completed": e.get("completed"),
-                              "username": username} for e in to_do]},
-                  jsonfile)
+    # Get a list of users
+    users = r.get(url + "users").json()
+
+    all_user_tasks = {}
+
+    # Iterate through each user
+    for user in users:
+        user_id = user.get("id")
+        user_tasks = r.get(url + f"todos?userId={user_id}").json()
+
+        # Collect tasks for the user
+        tasks_info = [
+            {
+                "username": user.get("username"),
+                "task": task.get("title"),
+                "completed": task.get("completed")
+            }
+            for task in user_tasks
+        ]
+
+        # Store tasks for the user in the dictionary
+        all_user_tasks[user_id] = tasks_info
+
+    # Dump all tasks for all users into a JSON file
+    with open("todo_all_employees.json", "w") as jsonfile:
+        json.dump(all_user_tasks, jsonfile, indent=4)
