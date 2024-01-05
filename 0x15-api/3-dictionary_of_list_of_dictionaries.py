@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Script that retrieves information about an employee's TODO list progress
+and exports it in JSON format.
+"""
 
 import json
 import requests as r
