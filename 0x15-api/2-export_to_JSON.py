@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+This script fetches user information and their corresponding tasks from the 
+JSONPlaceholder API and stores the data in a JSON file named
+'todo_all_employees.json'.
+"""
 
 import json
 import requests as r
