@@ -55,7 +55,7 @@ def recurse(subreddit, hot_list=[], after="", count=0):
 
     # If there are more posts to retrieve, recursively call the function
     if after is not None:
-        return recurse(subreddit, hot_list, after, count)
+        hot_list.extend(recurse(subreddit, hot_list, after, count))
 
     # Return the final list of hot post titles
     return hot_list
